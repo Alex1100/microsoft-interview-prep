@@ -116,6 +116,9 @@ module.exports = {
       return assetFilename.endsWith('.css') || assetFilename.endsWith('.js');
     }
   },
+  stats: {
+    colors: true,
+  },
   devtool: 'source-map',
   target: 'web',
   bail: true,
