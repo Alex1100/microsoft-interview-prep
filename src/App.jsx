@@ -9,7 +9,7 @@ import ProgressBar from "./components/ProgressBar";
 import "./App.css";
 
 const App = () => {
-  const [selectedComponent, setSelectedComponent] = useState("accordion");
+  const [selectedComponent, setSelectedComponent] = useState("progressBar");
   const getRandomIntInclusive = (min, max) => {
     min = Math.ceil(min);
     max = Math.floor(max);

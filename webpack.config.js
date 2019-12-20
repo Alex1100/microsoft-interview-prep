@@ -7,7 +7,7 @@ const happyThreadPool = HappyPack.ThreadPool({ size: 5 });
 
 module.exports = {
   context: __dirname,
-  mode: 'production',
+  mode: 'development',
   entry: path.resolve(__dirname, 'src/index.js'),
   plugins: [
     new webpack.ProgressPlugin(),
