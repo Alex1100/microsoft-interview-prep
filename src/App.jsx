@@ -12,6 +12,7 @@ import "./App.css";
 const App = () => {
   const [selectedComponent, setSelectedComponent] = useState("progressBar");
   const [dataLoaded, setDataLoaded] = useState(false);
+  const [data, setData] = useState('');
   const getRandomIntInclusive = (min, max) => {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -36,9 +37,12 @@ const App = () => {
       axios
         .get(`${API_BASE_URL}get-name?name=Alex`)
         .then(response => {
-          console.log("RESPONSE IS: ", response.data);
           if (response.data) {
+            console.log("RESPONSE IS: ", response);
             setDataLoaded(true);
+            if (response.data.name) {
+              setData(response.data.name);
+            }
           }
         })
         .catch(err => console.log("ERR MAKING EXPRESS REQUEST: ", err));
@@ -80,6 +84,7 @@ const App = () => {
     <Container className="p-3">
       <Jumbotron>
         <div>
+          <h1>{data}</h1>
           {Object.keys(components).map((key, index) => {
             return (
               <Fragment>
