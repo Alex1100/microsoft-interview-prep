@@ -1,4 +1,4 @@
-const router = require("express").Router;
+const router = require("express").Router();
 
 router.get("/get-name", (req, res) => {
   console.log("REACHES HERE@!!!");
