@@ -34,7 +34,7 @@ const App = () => {
   useEffect(() => {
     if (!dataLoaded) {
       axios
-        .get(`${API_BASE_URL}/get-name?name=Alex`)
+        .get(`${API_BASE_URL}get-name?name=Alex`)
         .then(response => {
           console.log("RESPONSE IS: ", response.data);
           if (response.data) {
