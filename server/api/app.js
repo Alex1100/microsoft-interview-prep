@@ -4,12 +4,14 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const app = new express();
 const cors = require("cors");
+const routes = require('./config/routes');
 
 app.use(cors());
 app.use(logger);
 app.use(bodyParser.json({limit: "2000mb"}));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, "../../", "public")));
+app.use(routes);
 
 app.get('*', (req, res) => {
   console.log('OK');
