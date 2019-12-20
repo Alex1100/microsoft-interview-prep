@@ -109,8 +109,8 @@ module.exports = {
   },
   performance: {
     hints: 'error',
-    maxAssetSize: 30000000,
-    maxEntrypointSize: 30000000,
+    maxAssetSize: 300000000,
+    maxEntrypointSize: 300000000,
     assetFilter: function(assetFilename) {
       // Function predicate that provides asset filenames
       return assetFilename.endsWith('.css') || assetFilename.endsWith('.js');
