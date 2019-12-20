@@ -34,8 +34,12 @@ const App = () => {
 
   useEffect(() => {
     if (!dataLoaded) {
+      const params = {
+        name: "Alex",
+      };
+
       axios
-        .get(`${API_BASE_URL}get-name?name=Alex`)
+        .get(`${API_BASE_URL}get-name`, {params})
         .then(response => {
           if (response.data) {
             console.log("RESPONSE IS: ", response);
