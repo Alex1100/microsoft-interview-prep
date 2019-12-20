@@ -6,7 +6,7 @@ import Container from "react-bootstrap/Container";
 import Accordion from "./components/Accordion";
 import AutoComplete from "./components/AutoComplete";
 import ProgressBar from "./components/ProgressBar";
-
+const API_BASE_URL = window.location.href;
 import "./App.css";
 
 const App = () => {
@@ -34,7 +34,7 @@ const App = () => {
   useEffect(() => {
     if (!dataLoaded) {
       axios
-        .get("https://api.coindesk.com/v1/bpi/currentprice.json")
+        .get(`${API_BASE_URL}/get-name?name=Alex`)
         .then(response => {
           console.log("RESPONSE IS: ", response.data);
           if (response.data) {
