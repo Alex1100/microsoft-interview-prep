@@ -1,4 +1,5 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
+import axios from "axios";
 
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Container from "react-bootstrap/Container";
@@ -10,6 +11,7 @@ import "./App.css";
 
 const App = () => {
   const [selectedComponent, setSelectedComponent] = useState("progressBar");
+  const [dataLoaded, setDataLoaded] = useState(false);
   const getRandomIntInclusive = (min, max) => {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -17,25 +19,49 @@ const App = () => {
   };
 
   const getRandomColor = () => {
-    const colors = ["lightblue", "lime", "darkseagreen", "lightgreen", "powderblue", "crimson", "indigo"];
+    const colors = [
+      "lightblue",
+      "lime",
+      "darkseagreen",
+      "lightgreen",
+      "powderblue",
+      "crimson",
+      "indigo"
+    ];
     return colors[getRandomIntInclusive(0, colors.length - 1)];
-  }
+  };
+
+  useEffect(() => {
+    if (!dataLoaded) {
+      axios
+        .get("https://api.coindesk.com/v1/bpi/currentprice.json")
+        .then(response => {
+          console.log("RESPONSE IS: ", response.data);
+          if (response.data) {
+            setDataLoaded(true);
+          }
+        })
+        .catch(err => console.log("ERR MAKING EXPRESS REQUEST: ", err));
+    }
+
+    return () => setDataLoaded(false);
+  }, []);
 
   const components = {
     accordion: {
       component: Accordion,
-      props: {},
+      props: {}
     },
     autocomplete: {
       component: AutoComplete,
-      props: {},
+      props: {}
     },
     progressBar: {
       component: ProgressBar,
       props: {
         displayPercentageNumber: true,
         progressPercentage: getRandomIntInclusive(0, 100),
-        defaultColor: getRandomColor(),
+        defaultColor: getRandomColor()
       }
     }
   };
@@ -67,9 +93,11 @@ const App = () => {
               </Fragment>
             );
           })}
-          <div style={{
-            marginTop: "5%",
-          }}>
+          <div
+            style={{
+              marginTop: "5%"
+            }}
+          >
             {renderSelectedComponent()}
           </div>
         </div>
