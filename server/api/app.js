@@ -14,7 +14,6 @@ app.use(express.static(path.join(__dirname, "../../", "public")));
 app.use(routes);
 
 app.get('*', (req, res) => {
-  console.log('OK');
   res.sendFile(path.join(__dirname, "../../", "public"))
 })
 const server = require('http').Server(app);
