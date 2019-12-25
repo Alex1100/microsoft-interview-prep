@@ -1,13 +1,34 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 
-const NavBar = () => {
+const NavBar = ({ handleComponentSelect }) => {
   return (
     <div>
       <ul>
-        <li><Link to="/component/accordion">Accordion</Link></li>
-        <li><Link to="/component/autocomplete">AutoComplete</Link></li>
-        <li><Link to="/component/progressBar">Progress Bar</Link></li>
+        <li onClick={handleComponentSelect}>
+          <Link
+            data-component-name={`Accordion`}
+            to="/"
+          >
+            Accordion
+          </Link>
+        </li>
+        <li onClick={handleComponentSelect}>
+          <Link
+            data-component-name={`AutoComplete`}
+            to="/"
+          >
+            AutoComplete
+          </Link>
+        </li>
+        <li onClick={handleComponentSelect}>
+          <Link
+            data-component-name={`ProgressBar`}
+            to="/"
+          >
+            Progress Bar
+          </Link>
+        </li>
       </ul>
     </div>
   )

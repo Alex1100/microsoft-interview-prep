@@ -1,24 +1,52 @@
-import React from "react";
+import React, { Component } from "react";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 import SelectedWidget from "./containers/SelectedWidget";
 import NavBar from "./components/NavBar";
+import { connect } from "react-redux";
+import { setSelectedComponent } from "./state";
 
-const Router = () => {
-  return (
-    <BrowserRouter>
-      <NavBar />
+class Router extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-      <Switch>
-        <Route exact path="/">
-          <SelectedWidget />
-        </Route>
+  handleComponentSelect = (evt) => {
+    evt.preventDefault();
+    let selected = evt.target.getAttribute("data-component-name");
+    this.props.selectComponent(selected);
+  }
 
-        <Route path="/component/:selectedComponent">
-          <SelectedWidget />
-        </Route>
-      </Switch>
-    </BrowserRouter>
-  );
+
+  render() {
+    const navBarProps = {
+      ...this.props,
+      handleComponentSelect: this.handleComponentSelect,
+    };
+
+    return (
+      <BrowserRouter>
+        <NavBar {...navBarProps} />
+
+        <Switch>
+          <Route exact path="/">
+            <SelectedWidget {...{selectedComponent: this.props.selectedComponent}} />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    );
+  };
 };
 
-export default Router;
+const mapStateToProps = (state) => {
+  const { rootReducer } = state;
+  const { selectedComponent } = rootReducer;
+  return {
+    selectedComponent,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  selectComponent: (selected) => dispatch(setSelectedComponent(selected)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Router);

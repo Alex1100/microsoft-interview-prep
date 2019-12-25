@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { setSelectedSection } from "../state";
+import { AccordionConsumer } from "../providers/accordionProvider";
 
-const Section = ({
-  handler,
-  section: { content, title },
-  keyIdx,
-  selectedSection
-}) => {
+
+const Section = state => {
+  const {
+    section: { content, title },
+    keyIdx,
+    selectedSection,
+    dispatch,
+  } = state;
   const isSelected = selectedSection === keyIdx;
+  const handler = () => {
+    dispatch(setSelectedSection(keyIdx));
+  };
 
   return (
     <div>
@@ -48,13 +55,13 @@ const Section = ({
                 margin: "5%"
               }}
             >
-              {content}
+              <p>{content}</p>
             </span>
           </div>
         </>
       )}
     </div>
   );
-};
+}
 
 export default Section;

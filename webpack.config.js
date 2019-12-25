@@ -11,6 +11,9 @@ module.exports = {
   entry: path.resolve(__dirname, 'src/index.js'),
   plugins: [
     new webpack.ProgressPlugin(),
+    new webpack.DefinePlugin({
+      NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+    }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].css'
