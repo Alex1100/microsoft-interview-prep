@@ -1,28 +1,19 @@
-import React, { useState, useEffect, Fragment } from "react";
-import axios from "axios";
+import React from "react";
+import "./App.css";
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { store, persistor } from "./stores";
-console.log("STORE: ", store);
-const API_BASE_URL = window.location.href;
-import "./App.css";
-import Router from "./Router";
-import {
-  AccordionProvider,
-} from "./providers/accordionProvider";
+import { CharacterProvider, AccordionProvider } from "./providers";
+import { Router } from "./Router";
 
-const App = () => {
-    return (
-      <Fragment>
-        <Provider store={store}>
-          <PersistGate loading={null} persistor={persistor}>
-            <AccordionProvider>
-              <Router />
-            </AccordionProvider>
-          </PersistGate>
-        </Provider>
-      </Fragment>
-    );
-};
-
-export default App;
+export const App = () => (
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <CharacterProvider>
+        <AccordionProvider>
+          <Router />
+        </AccordionProvider>
+      </CharacterProvider>
+    </PersistGate>
+  </Provider>
+);

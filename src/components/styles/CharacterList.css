@@ -1,0 +1,16 @@
+.character-list-container {
+  flex-basis: 40%;
+  background-color: rgb(69, 126, 126);
+  border: solid 2px white;
+  border-radius: 4px;
+  margin: 1%;
+  box-sizing: border-box;
+}
+
+.character-item {
+  color: white;
+}
+
+.favorite {
+  color: gold;
+}

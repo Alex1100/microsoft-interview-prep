@@ -3,7 +3,7 @@ import { setSelectedSection } from "../state";
 import { AccordionConsumer } from "../providers/accordionProvider";
 
 
-const Section = state => {
+export const Section = state => {
   const {
     section: { content, title },
     keyIdx,
@@ -62,6 +62,4 @@ const Section = state => {
       )}
     </div>
   );
-}
-
-export default Section;
+};

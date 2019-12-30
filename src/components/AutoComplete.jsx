@@ -22,7 +22,7 @@ export const mockAPICall = input => {
   return mockDB.filter(el => el.indexOf(input) >= 0 || el === input);
 };
 
-const AutoComplete = () => {
+export const AutoComplete = () => {
   const [searchedTerm, setSearchedTerm] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
   const [inThrottle, setInThrottle] = useState(false);
@@ -30,7 +30,7 @@ const AutoComplete = () => {
   useEffect(() => {
     if (searchedTerm) {
       let res = suggestions;
-      
+
       if (!inThrottle) {
         res = mockAPICall(searchedTerm);
         setInThrottle(true);
@@ -68,5 +68,3 @@ const AutoComplete = () => {
     </div>
   );
 };
-
-export default AutoComplete;

@@ -6,7 +6,7 @@ import {
 } from "../state";
 import { connect } from "react-redux";
 
-class ProgressBar extends Component {
+class ProgressBarClass extends Component {
   constructor(props) {
     super(props);
   }
@@ -67,4 +67,4 @@ const mapDispatchToProps = dispatch => ({
   setPercentageVal: (percentLoaded) => dispatch(setPercentage(percentLoaded)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProgressBar);
+export const ProgressBar = connect(mapStateToProps, mapDispatchToProps)(ProgressBarClass);

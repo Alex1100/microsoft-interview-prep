@@ -1,17 +1,20 @@
 import React, { Fragment, createElement, useState, useEffect } from "react";
-import Jumbotron from "react-bootstrap/Jumbotron";
-import Container from "react-bootstrap/Container";
-import Accordion from "../containers/Accordion";
-import ProgressBar from "../containers/ProgressBar";
-import AutoComplete from "../components/AutoComplete";
+import { Jumbotron, Container } from "react-bootstrap";
+import {
+  CharacterContainer,
+  Accordion,
+  ProgressBar,
+} from "../containers";
+import { AutoComplete } from "../components";
 
 const componentMap = {
   Accordion,
   ProgressBar,
   AutoComplete,
+  CharacterContainer,
 };
 
-const SelectedWidget = (props) => {
+export const SelectedWidget = (props) => {
 
   const renderSelectedComponent = () => {
     const Component = componentMap[props.selectedComponent];
@@ -29,5 +32,3 @@ const SelectedWidget = (props) => {
     </Fragment>
   );
 };
-
-export default SelectedWidget;

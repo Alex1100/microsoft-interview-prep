@@ -1,10 +1,10 @@
 import React, { Fragment, useEffect, useReducer, Component } from "react";
-import Section from "../components/Section";
+import { Section } from "../components";
 import { setSelectedSection } from "../state";
 import { connect } from "react-redux";
 import { AccordionConsumer } from "../providers/accordionProvider";
 
-const Accordion = () => {
+export const Accordion = () => {
   return (
     <Fragment>
       <AccordionConsumer>
@@ -29,5 +29,3 @@ const Accordion = () => {
     </Fragment>
   );
 };
-
-export default Accordion;
